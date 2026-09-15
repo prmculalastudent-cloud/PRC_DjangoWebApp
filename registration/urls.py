@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
     path(
         '',
@@ -25,5 +24,11 @@ urlpatterns = [
         'delete/<int:pk>/',
         views.student_delete,
         name='student_delete'
+    ),
+
+    path(
+        'dashboard/',
+        views.student_dashboard,
+        name='student_dashboard'
     ),
 ]

@@ -67,3 +67,33 @@ def student_delete(request, pk):
         'registration/student_confirm_delete.html',
         {'student': student}
     )
+
+def student_dashboard(request):
+    students = Student.objects.all()
+
+    total_students = students.count()
+
+    program_counts = {}
+    year_counts = {}
+
+    for student in students:
+        program_counts[student.program] = (
+            program_counts.get(student.program, 0) + 1
+        )
+
+        year_counts[student.year_level] = (
+            year_counts.get(student.year_level, 0) + 1
+        )
+
+    context = {
+        'students': students,
+        'total_students': total_students,
+        'program_counts': program_counts,
+        'year_counts': year_counts,
+    }
+
+    return render(
+        request,
+        'registration/student_dashboard.html',
+        context
+    )

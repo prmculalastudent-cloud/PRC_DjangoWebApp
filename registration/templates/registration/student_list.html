@@ -7,11 +7,17 @@
 
     <h1>Registered Students</h1>
 
-    <a href="{% url 'student_create' %}">
-        Register Student
-    </a>
+<a href="{% url 'student_create' %}">
+    Register Student
+</a>
 
-    <hr>
+|
+
+<a href="{% url 'student_dashboard' %}">
+    View Dashboard
+</a>
+
+<hr>
 
     {% for student in students %}
 
