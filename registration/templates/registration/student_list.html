@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+</head>
+<body>
+
+    <h1>Registered Students</h1>
+
+<a href="{% url 'student_create' %}">
+    Register Student
+</a>
+
+|
+
+<a href="{% url 'student_dashboard' %}">
+    View Dashboard
+</a>
+
+<form action="{% url 'logout' %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+<hr>
+
+    {% for student in students %}
+
+        <h3>{{ student.student_name }}</h3>
+
+        <p>Program: {{ student.program }}</p>
+        <p>Year Level: {{ student.year_level }}</p>
+        <p>Email: {{ student.email }}</p>
+
+        <a href="{% url 'student_update' student.pk %}">
+            Edit
+        </a>
+
+        <a href="{% url 'student_delete' student.pk %}">
+            Delete
+        </a>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No students registered yet.</p>
+
+    {% endfor %}
+
+</body>
+</html>
